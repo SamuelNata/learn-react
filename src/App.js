@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import StockBoard from './stock/StockBoard';
 
 class App extends Component {
   render() {
@@ -19,6 +20,8 @@ class App extends Component {
           >
             Learn React
           </a>
+          <StockBoard/>
+
         </header>
       </div>
     );

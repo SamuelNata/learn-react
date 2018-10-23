@@ -12,3 +12,16 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+
+.whiteblock {
+  width: 200px;
+  height: 100px;
+  background-color: #fff;
+}
+
+table, td {
+  border-style: solid;
+  border-radius: 1px;
+  border-color: #fff;
+}
