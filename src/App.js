@@ -1,29 +1,51 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import StockBoard from './stock/StockBoard';
+import { render } from 'react-dom';
+import { ColoredRect, StockBoard } from './stock/StockBoard';
+import { Group, Stage, Layer, Rect, Text, Line } from 'react-konva';
 
 class App extends Component {
   render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          <StockBoard/>
+    let u = 100;
 
-        </header>
-      </div>
+    let l = Array.apply(null, {length: window.innerWidth/u}).map((v, idx) => idx+1);
+    const wLines = l.map((num) =>
+      <Line
+        points={[num*u, 0, num*u, window.innerHeight]}
+        stroke='#fff'
+        strokeWidth={1}
+        lineCap='round'
+      />
+    );
+
+    l = Array.apply(null, {length: window.innerHeight/u}).map((v, idx) => idx+1);
+    const hLines = l.map((num) =>
+      <Line
+        points={[0, num*u, window.innerWidth, num*u]}
+        stroke='#fff'
+        strokeWidth={1}
+        lineCap='round'
+      />
+    );
+
+    return (
+      <Stage width={window.innerWidth} height={window.innerHeight}>
+        <Layer>
+          <Group>
+            <Rect
+              x={0}
+              y={0}
+              width={window.innerWidth}
+              height={window.innerHeight}
+              fill="#333"
+            />
+            <Group draggable={true}>
+              {wLines}
+              {hLines}
+            </Group>
+          </Group>
+        </Layer>
+      </Stage>
     );
   }
 }
